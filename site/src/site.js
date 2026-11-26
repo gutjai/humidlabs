@@ -1,5 +1,7 @@
 'use strict';
 
+document.documentElement.classList.remove('pre');
+
 const { page, root, goat, brand } = document.body.dataset;
 const canonical = new URL(document.querySelector('link[rel="canonical"]').href);
 const dialog = document.getElementById('reveal-dialog');
@@ -69,6 +71,7 @@ if (dialog) {
     if (dialog.open) return;
     clearTimeout(revealTimer);
     content.replaceChildren();
+    document.dispatchEvent(new CustomEvent('dewpoint-reveal', { detail: false }));
     opener?.focus({ preventScroll: true });
   });
   dialog.addEventListener('keydown', event => {
@@ -106,6 +109,7 @@ if (dialog) {
       initParty(content);
       completed = false;
       dialog.showModal();
+      document.dispatchEvent(new CustomEvent('dewpoint-reveal', { detail: true }));
       closeButton.focus();
       scheduleCompletion();
     });
@@ -291,7 +295,9 @@ if (quiz) {
     const score = Math.round(total / (2 * copy.questions.length) * 100);
     const heading = result.querySelector('h2');
     heading.textContent = copy.bands[score < 45 ? 0 : score < 80 ? 1 : 2];
-    result.querySelector('[data-score]').textContent = score + '% readiness · ' + total + ' of ' + 2 * copy.questions.length + ' points';
+    const scoreValue = document.createElement('strong');
+    scoreValue.textContent = score + '%';
+    result.querySelector('[data-score]').replaceChildren(scoreValue, ' readiness · ' + total + ' of ' + 2 * copy.questions.length + ' points');
     recommendations = copy.questions.map(([, action], index) => ({ action, value: values[index] }))
       .sort((a, b) => a.value - b.value).slice(0, 3).map(item => item.action);
     fillRecommendations(result.querySelector('ol'));
@@ -319,3 +325,152 @@ if (mobileAudit && heroAudit) {
   }).observe(heroAudit);
 }
 
+const menuButton = document.querySelector('.menu-toggle');
+const mobileNavigation = document.getElementById('mobile-navigation');
+const tablet = matchMedia('(max-width:899px)');
+function toggleMenu(open, returnFocus = false) {
+  mobileNavigation.hidden = !open;
+  menuButton.setAttribute('aria-expanded', String(open));
+  if (returnFocus) menuButton.focus();
+}
+menuButton.hidden = !tablet.matches;
+tablet.addEventListener('change', () => { menuButton.hidden = !tablet.matches; toggleMenu(false); });
+menuButton.addEventListener('click', () => toggleMenu(mobileNavigation.hidden));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && !mobileNavigation.hidden) toggleMenu(false, true);
+});
+document.addEventListener('click', event => {
+  if (!mobileNavigation.hidden && !event.target.closest('.site-header')) toggleMenu(false);
+});
+
+const header = document.querySelector('.site-header');
+const services = document.querySelector('.services');
+const trackElement = services?.querySelector('.service-track');
+const panels = [...(trackElement?.children ?? [])];
+const scrollTimeline = CSS.supports('animation-timeline: view()');
+const pinned = matchMedia('(min-width:900px) and (prefers-reduced-motion:no-preference)');
+const progressLabel = services?.querySelector('.service-progress');
+let scrollFrame;
+function updateScroll() {
+  scrollFrame = 0;
+  header.classList.toggle('is-scrolled', scrollY > 80);
+  if (!services || !pinned.matches || !scrollTimeline) return;
+  const pin = services.firstElementChild;
+  const length = services.offsetHeight - pin.offsetHeight;
+  const progress = Math.min(1, Math.max(0, (80 - services.getBoundingClientRect().top) / length));
+  progressLabel.style.setProperty('--progress', progress * 100 + '%');
+  progressLabel.firstElementChild.textContent = String(1 + Math.round(progress * (panels.length - 1))).padStart(2, '0');
+}
+function scheduleScroll() {
+  if (!scrollFrame) scrollFrame = requestAnimationFrame(updateScroll);
+}
+function updatePin() {
+  services?.classList.toggle('is-pinned', pinned.matches && scrollTimeline);
+  scheduleScroll();
+}
+pinned.addEventListener('change', updatePin);
+window.addEventListener('scroll', scheduleScroll, { passive: true });
+window.addEventListener('resize', scheduleScroll, { passive: true });
+updatePin();
+trackElement?.addEventListener('focusin', event => {
+  if (!pinned.matches || !scrollTimeline) return;
+  const panel = event.target.closest('.service-panel');
+  if (!panel) return;
+  services.firstElementChild.scrollLeft = 0;
+  const position = panels.indexOf(panel) / (panels.length - 1);
+  const length = services.offsetHeight - services.firstElementChild.offsetHeight;
+  scrollTo(0, scrollY + services.getBoundingClientRect().top - 80 + position * length);
+  updateScroll();
+});
+
+const indexLinks = [...document.querySelectorAll('.page-index a')];
+if (indexLinks.length) {
+  const setCurrent = current => {
+    for (const link of indexLinks) {
+      if (link.hash === '#' + current.id) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    }
+  };
+  const index = new IntersectionObserver(entries => {
+    const current = entries.find(entry => entry.isIntersecting);
+    if (current) setCurrent(current.target);
+  }, { rootMargin: '-18% 0px -60% 0px' });
+  indexLinks.forEach(link => index.observe(document.getElementById(link.hash.slice(1))));
+  setCurrent(document.getElementById(indexLinks[0].hash.slice(1)));
+}
+
+if (!motion.matches) {
+  const ease = 'cubic-bezier(.22,.7,.25,1)';
+  const lift = (element, delay, duration) => element?.animate(
+    [{ opacity: 0, translate: '0 .6em' }, { opacity: 1, translate: '0 0' }],
+    { delay, duration, easing: ease, fill: 'backwards' }
+  );
+  lift(header.querySelector('.logo'),60,600);
+  lift(header.querySelector('.nav-pill'),150,700);
+  lift(header.querySelector('[data-audit]'),200,700);
+  lift(document.querySelector('.hero .eyebrow'),300,520);
+  document.querySelector('.hero .intro')?.animate(
+    [{ translate: '0 .7em' }, { translate: '0 0' }],
+    { delay: 760, duration: 560, easing: ease, fill: 'backwards' }
+  );
+  lift(document.querySelector('.hero .actions'),840,700);
+  lift(document.querySelector('.scene-bar'),1000,520);
+  for (const [index, line] of [...document.querySelectorAll('.hero .line')].entries()) {
+    line.animate([{clipPath:'inset(100% 0 -14% 0)',translate:'0 .16em'},{clipPath:'inset(-18% 0 -14% 0)',translate:'0 0'}],
+      {delay:380+index*90,duration:980,easing:'cubic-bezier(.16,1,.3,1)',fill:'backwards'});
+  }
+  const sectionEntry = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    const element = entry.target;
+    sectionEntry.unobserve(element);
+    if (!motion.matches) lift(element, Number(element.dataset.revealDelay || 0), element.matches('h2') ? 900 : 700);
+  }), {rootMargin:'0px 0px -10% 0px'});
+  document.querySelectorAll('.section-heading h2,.prose h2,.cards .card,.industry').forEach(element => {
+    if (element.matches('.card,.industry')) element.dataset.revealDelay = [...element.parentElement.children].indexOf(element)*80;
+    sectionEntry.observe(element);
+  });
+}
+
+const precise = matchMedia('(hover:hover) and (pointer:fine)');
+const wordmark = document.querySelector('.wordmark');
+let fogX = 0, fogY = -300, goalX = 0, goalY = -300, fogFrame = 0;
+function moveFog() {
+  fogX += (goalX-fogX)*.12;
+  fogY += (goalY-fogY)*.12;
+  wordmark.style.setProperty('--x', fogX + 'px');
+  wordmark.style.setProperty('--y', fogY + 'px');
+  fogFrame = Math.abs(goalX-fogX)+Math.abs(goalY-fogY) > 1 ? requestAnimationFrame(moveFog) : 0;
+}
+wordmark.addEventListener('pointermove', event => {
+  if (!precise.matches || motion.matches) return;
+  const box = wordmark.getBoundingClientRect();
+  goalX = event.clientX-box.left;
+  goalY = event.clientY-box.top;
+  if (!fogFrame) fogFrame = requestAnimationFrame(moveFog);
+}, {passive:true});
+wordmark.addEventListener('pointerleave', () => {
+  if (!precise.matches || motion.matches) return;
+  goalY = -300;
+  if (!fogFrame) fogFrame = requestAnimationFrame(moveFog);
+});
+
+const magnetic = header.querySelector('[data-audit]');
+header.addEventListener('pointermove', event => {
+  if (!precise.matches || motion.matches) return;
+  const box = magnetic.getBoundingClientRect();
+  const x = event.clientX-box.left-box.width/2;
+  const y = event.clientY-box.top-box.height/2;
+  const active = Math.hypot(Math.max(0,Math.abs(x)-box.width/2),Math.max(0,Math.abs(y)-box.height/2)) < 80;
+  magnetic.style.setProperty('--mx', (active ? Math.max(-10,Math.min(10,x*.25)) : 0)+'px');
+  magnetic.style.setProperty('--my', (active ? Math.max(-10,Math.min(10,y*.25)) : 0)+'px');
+}, {passive:true});
+header.addEventListener('pointerleave', () => {
+  magnetic.style.removeProperty('--mx');
+  magnetic.style.removeProperty('--my');
+});
+document.querySelectorAll('.industry').forEach(tile => tile.addEventListener('pointermove', event => {
+  if (!precise.matches || motion.matches) return;
+  const box = tile.getBoundingClientRect();
+  tile.style.setProperty('--chip-x',event.clientX-box.left+'px');
+  tile.style.setProperty('--chip-y',event.clientY-box.top+'px');
+}, {passive:true}));

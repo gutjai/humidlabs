@@ -33,7 +33,11 @@ const organization = {
   logo: abs('assets/icon.svg'), areaServed: [{ '@type': 'City', name: 'Brisbane' }, { '@type': 'State', name: 'Queensland' }]
 };
 const logo = `<a class="logo" href="${url('/')}"><img src="${url('assets/icon.svg')}" width="34" height="34" alt="">${h(brandName)}</a>`;
-const navigation = copy.nav.map(([label, route]) => link(route, label)).join('');
+const navigation = (current = '', roll = false) => copy.nav.map(([label, route]) => {
+  const letters = [...label].map((letter, i) => `<i style="--i:${i}">${h(letter)}</i>`).join('');
+  return `<a href="${url(route)}"${roll ? ` aria-label="${h(label)}"` : ''}${current.startsWith(route) ? ' aria-current="page"' : ''}>${roll ?
+    `<span class="roll"><span>${letters}</span><span class="roll-b" aria-hidden="true">${letters}</span></span>` : h(label)}</a>`;
+}).join('');
 const extraNav = [['About','about/'],['FAQ','faq/'],['AI readiness','tools/ai-readiness/']].map(([label,route]) => link(route,label)).join('');
 const revealCopy = copy.reveal;
 const shareUrl = abs('/?ref=share');
@@ -77,16 +81,33 @@ function work() {
     </article>`).join('')}</div>`;
 }
 
+const picture = name => `<img src="${url('assets/' + name + '.webp')}" srcset="${url('assets/' + name + '-800.webp')} 800w, ${url('assets/' + name + '.webp')} 1600w" sizes="(max-width:700px) 100vw, 86vw" loading="lazy" alt="">`;
 function home() {
-  return `<section class="hero"><div class="hero-copy"><p class="eyebrow"><span></span>${h(copy.homeLabel)}</p>
-    <h1>${copy.homeLines.map(line => `<span>${h(line)}</span>`).join('')}</h1><p class="intro">${h(copy.homeIntro)}</p>
-    <div class="actions">${audit('hero')}${link('services/', copy.homeSecondary, 'button ghost')}</div></div>
-    <div class="visual" data-scene><img class="poster" src="${url('assets/river.png')}" width="1200" height="630" alt="" fetchpriority="high"><div class="scene-label"><i></i>${h(copy.sceneLabel)}</div><div class="scene-controls" hidden><span>${h(copy.sceneHint)}</span><button data-morph aria-label="${h(copy.sceneToggle)}">${h(copy.sceneButton)}</button><button data-pause data-resume-label="${h(copy.sceneResume)}">${h(copy.scenePause)}</button></div></div>
-  </section>
-  <section class="band"><div class="section-heading"><p class="eyebrow">SERVICES</p><h2>${h(copy.homeSection)}</h2></div>${cardList(children('services/').filter(([route]) => route !== 'services/ai-audit/'))}</section>
-  <section class="band"><div class="section-heading"><p class="eyebrow">INDUSTRIES</p><h2>AI in your day-to-day.</h2></div>${cardList(children('industries/'))}</section>
-  <section class="tool-strip"><div><h2>${h(copy.homeTool)}</h2><p>${h(copy.homeToolText)}</p></div>${link('tools/ai-readiness/', copy.homeToolAction, 'button')}</section>
-  <section class="band"><div class="section-heading"><p class="eyebrow">SELECTED WORK</p><h2>From brief to build.</h2></div>${work()}</section>`;
+  const services = children('services/').filter(([route]) => route !== 'services/ai-audit/');
+  const industries = children('industries/');
+  const statement = 'We start with the work that costs you time — or loses you enquiries.';
+  const marquee = 'AI marketing ◦ Automation ◦ Team training ◦ Brisbane &amp; SEQ ◦ Remote-first ◦ ';
+  return `<section class="hero" data-scene>
+    <picture class="poster"><source media="(max-width:699px)" srcset="${url('assets/dewpoint-poster-mobile.webp')}"><img src="${url('assets/dewpoint-poster.webp')}" srcset="${url('assets/dewpoint-poster-800.webp')} 800w, ${url('assets/dewpoint-poster.webp')} 1600w" sizes="100vw" width="1600" height="900" alt="" fetchpriority="high"></picture>
+    <div class="hero-copy wrap"><p class="eyebrow">${h(copy.homeLabel)}</p>
+      <h1>${copy.homeLines.map(line => `<span class="line">${h(line).replace('boring', '<em>boring</em>')}</span>`).join(' ')}</h1>
+      <p class="intro">${h(copy.homeIntro)}</p>
+      <div class="actions">${audit('hero')}${link('services/', copy.homeSecondary, 'button ghost')}</div>
+    </div>
+    <div class="scene-bar wrap"><span class="scene-label">${h(copy.sceneLabel)}</span><span class="wipe-hint" hidden>✦ Wipe the glass</span>
+      <div class="scene-controls" hidden><button data-morph aria-label="${h(copy.sceneToggle)}" aria-pressed="false">Switch view</button><button data-pause data-resume-label="${h(copy.sceneResume)}" aria-pressed="false">${h(copy.scenePause)}</button></div>
+    </div></section>
+  <section class="statement wrap"><p class="statement-copy">${statement.split(' ').map((word, i) => `<span style="--i:${i}">${/^(time|enquiries\.)$/.test(word) ? `<em>${h(word)}</em>` : h(word)}</span>`).join(' ')}</p>
+    <p class="eyebrow statement-facts">${services.length} services ◦ ${industries.length} industries ◦ ${copy.tool.questions.length}-question readiness check</p></section>
+  <section class="services" aria-labelledby="home-services" style="--panels:${services.length}"><div class="services-pin"><div class="section-heading wrap"><p class="eyebrow">Services</p><h2 id="home-services">${h(copy.homeSection)}</h2></div>
+    <div class="service-track">${services.map(([route, [title, desc]], i) => `<a class="service-panel" href="${url(route)}">
+      ${picture('service-' + i)}<div class="service-copy"><span aria-hidden="true">${String(i + 1).padStart(2, '0')}</span><h3>${h(expand(title)).replace(/([^ ]+)$/, '<em>$1</em>')}</h3><p>${h(desc)}</p><span class="read-more">Read more ↗</span></div></a>`).join('')}</div>
+    <p class="service-progress wrap" aria-hidden="true"><span>01</span> / 03 <i></i></p></div></section>
+  <section class="industry-section wrap"><div class="section-heading"><p class="eyebrow">Industries</p><h2>AI in your day-to-day.</h2></div>
+    <div class="industry-grid">${industries.map(([route, [title, desc]], i) => `<a class="industry" href="${url(route)}">${picture('industry-' + i)}<div class="industry-copy"><h3>${h(expand(title))}</h3><p>${h(desc)}</p></div><span class="cursor-chip" aria-hidden="true">View ↗</span></a>`).join('')}</div></section>
+  <section class="readiness dusk"><div class="wrap"><div><h2>${h(copy.homeTool)}</h2><p>${h(copy.homeToolText)}</p>${link('tools/ai-readiness/', copy.homeToolAction + ' ↗', 'button')}</div><div class="question-stack" aria-hidden="true">${copy.tool.questions.slice(0, 3).map(([question]) => `<span>${h(question)}</span>`).join('')}</div></div></section>
+  <section class="selected"><div class="section-heading wrap"><p class="eyebrow">Selected work</p><h2>From brief to build.</h2></div>${work()}</section>
+  <div class="marquee"><span class="sr-only">${marquee}</span><div aria-hidden="true">${`<span>${marquee.repeat(3)}</span>`.repeat(2)}</div></div>`;
 }
 function quiz() {
   return `<section class="quiz" data-quiz><script type="application/json" id="quiz-data">${JSON.stringify(copy.tool).replaceAll('<', '\\u003c')}</script>
@@ -113,7 +134,7 @@ const sources = {
   council: ['Brisbane City Council’s small business AI tips', 'https://brisbane.qld.gov.au/business-in-brisbane/business-in-brisbane-blog/9-tips-for-using-ai-in-small-business'],
   tafe: ['TAFE Queensland’s Introduction to Modern AI', 'https://tafeqld.edu.au/course/19/19404/intro-to-modern-ai']
 };
-const refs = keys => keys?.length ? `<section><h2>Further reading</h2><ul>${keys.map(key => `<li><a href="${h(sources[key][1])}">${h(sources[key][0])}</a></li>`).join('')}</ul></section>` : '';
+const refs = keys => keys?.length ? `<section id="further-reading"><h2>Further reading</h2><ul>${keys.map(key => `<li><a href="${h(sources[key][1])}">${h(sources[key][0])}</a></li>`).join('')}</ul></section>` : '';
 const extras = await json(content, 'details');
 
 for (const [route, [rawTitle, description, intro, ...sections]] of Object.entries(pages)) {
@@ -133,7 +154,12 @@ for (const [route, [rawTitle, description, intro, ...sections]] of Object.entrie
     body = `<header class="page-head">${breadcrumb.html}<h1>${h(heading)}</h1>${intro ? `<p class="intro">${h(expand(intro))}</p>` : ''}</header>`;
     if (['services/', 'industries/', 'guides/'].includes(route)) body += cardList(children(route));
     if (sections.length) {
-      body += `<article class="prose">${sections.map(([label, text]) => `<section><h2>${h(label)}</h2>${renderText(text)}</section>`).join('')}${refs(references)}</article>`;
+      const index = sections.map(([label], i) => [label, 'section-' + (i + 1)]);
+      if (references?.length) index.push(['Further reading', 'further-reading']);
+      const indexLinks = `<nav aria-label="On this page">${index.map(([label, id]) => `<a href="#${id}">${h(label)}</a>`).join('')}</nav>`;
+      body += `<div class="editorial"><aside class="page-index"><p>On this page</p>${indexLinks}</aside>
+        <details class="mobile-index"><summary>On this page</summary>${indexLinks}</details>
+        <article class="prose">${sections.map(([label, text], i) => `<section id="${index[i][1]}"><h2>${h(label)}</h2>${renderText(text)}</section>`).join('')}${refs(references)}</article></div>`;
     }
     if (route === 'work/') body += work();
     if (route === 'tools/ai-readiness/') {
@@ -150,7 +176,7 @@ for (const [route, [rawTitle, description, intro, ...sections]] of Object.entrie
     if (guide) schema.push({ '@type': 'Article', headline: heading, description, image: abs('assets/og.png'), author: { '@id': organization['@id'] }, mainEntityOfPage: abs(route), inLanguage: 'en-AU' });
     if (service) schema.push({ '@type': 'Service', name: heading, description, provider: { '@id': organization['@id'] }, areaServed: organization.areaServed[0] });
     if (related.length) body += `<div class="band"><h2>Keep going</h2>${cardList(related.map(target => [target, pages[target]]))}</div>`;
-    if (!noindex && route !== 'tools/ai-readiness/') body += `<section class="tool-strip"><div><h2>Pick your first project.</h2><p>Start with a free audit or work through the readiness assessment.</p></div><div class="actions">${audit('page-' + route.replaceAll('/', '-').replace(/-$/, ''))}${link('tools/ai-readiness/', 'Take the assessment', 'button ghost')}</div></section>`;
+    if (!noindex && route !== 'tools/ai-readiness/') body += `<section class="tool-strip dusk"><div><h2>Pick your first project.</h2><p>Start with a free audit or work through the readiness assessment.</p></div><div class="actions">${audit('page-' + route.replaceAll('/', '-').replace(/-$/, ''))}${link('tools/ai-readiness/', 'Take the assessment', 'button ghost')}</div></section>`;
   }
   routes.set(route, { title, description, body, noindex, schema });
 }
@@ -166,12 +192,15 @@ for (const [route, { title, description, body, noindex, schema }] of routes) {
   ${noindex ? '<meta name="robots" content="noindex,follow">' : ''}<meta property="og:type" content="${route.startsWith('guides/') && route !== 'guides/' ? 'article' : 'website'}">
   <meta property="og:title" content="${h(title)}"><meta property="og:description" content="${h(description)}"><meta property="og:url" content="${h(abs(route))}">
   <meta property="og:image" content="${h(abs('assets/og.png'))}"><meta property="og:image:alt" content="Luminous particle illustration of the Brisbane River"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
-  <link rel="icon" href="${url('assets/icon.svg')}"><link rel="stylesheet" href="${url('styles.css')}"><script type="application/ld+json">${graph}</script>
-  <script defer src="${url('site.js')}"></script>${route === '/' ? `<script type="module" src="${url('scene.js')}"></script>` : ''}</head>
+  <link rel="icon" href="${url('assets/icon.svg')}"><link rel="preload" href="${url('assets/fonts/geist-var.woff2')}" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="${url('styles.css')}"><script type="application/ld+json">${graph}</script>
+  <script>if (Element.prototype.animate && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.documentElement.classList.add('pre');
+    setTimeout(() => document.documentElement.classList.remove('pre'), 4000);
+  }</script><script defer src="${url('site.js')}"></script>${route === '/' ? `<script type="module" src="${url('scene.js')}"></script>` : ''}</head>
   <body data-page="/${route === '/' ? '' : h(route)}" data-root="${h(root)}" data-goat="${h(goatCounterCode)}" data-brand="${h(brandName)}">
-  <a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="header-inner">${logo}<nav aria-label="Main navigation">${navigation}</nav>${audit('header')}</div></header>
+  <a class="skip" href="#main">Skip to content</a><header class="site-header"><div class="header-inner">${logo}<nav class="nav-pill" aria-label="Main navigation">${navigation(route, true)}</nav><button class="menu-toggle button ghost" type="button" aria-expanded="false" aria-controls="mobile-navigation" hidden>Menu</button>${audit('header')}</div><nav id="mobile-navigation" aria-label="Mobile navigation" hidden>${navigation(route)}</nav></header>
   <main id="main" class="${route === '/' ? 'home' : 'page'}">${body}</main>
-  <footer class="footer"><div>${logo}<p>Brisbane &amp; South East Queensland · Remote-first</p></div><nav aria-label="Footer">${navigation}${extraNav}</nav></footer>
+  <footer class="footer dusk"><div class="wrap footer-links"><div>${logo}<p>Brisbane &amp; South East Queensland · Remote-first</p></div><nav aria-label="Footer">${navigation()}${extraNav}</nav></div><div class="wordmark" aria-hidden="true"><span>${h(brandName)}</span><span>${h(brandName)}</span></div></footer>
   ${route === '/' ? `<div class="mobile-audit" hidden>${audit('mobile')}</div>` : ''}
   ${route === 'gotcha/' ? '' : dialog}</body></html>`;
   await mkdir(dirname(target), { recursive: true });
