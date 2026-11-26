@@ -1,0 +1,124 @@
+{
+  "nav": [
+    [
+      "Services",
+      "services/"
+    ],
+    [
+      "Industries",
+      "industries/"
+    ],
+    [
+      "Guides",
+      "guides/"
+    ],
+    [
+      "Work",
+      "work/"
+    ]
+  ],
+  "audit": "Book a free AI audit",
+  "homeLabel": "BRISBANE, AUSTRALIA",
+  "homeLines": [
+    "AI that does the",
+    "boring bits."
+  ],
+  "homeIntro": "For Brisbane businesses. Practical AI marketing, automation and team training, starting with the work that costs time or loses enquiries.",
+  "homeSecondary": "Explore our services",
+  "sceneLabel": "BRISBANE RIVER STUDY",
+  "sceneHint": "Drag to rotate",
+  "sceneToggle": "Switch between the AI network and Brisbane River",
+  "sceneButton": "Switch view",
+  "scenePause": "Pause animation",
+  "sceneResume": "Resume animation",
+  "homeSection": "Where we can help.",
+  "homeTool": "How ready is your business for AI?",
+  "homeToolText": "Seven questions to help you pick a first project and spot what needs to be in place before you start.",
+  "homeToolAction": "Check your AI readiness",
+  "reveal": {
+    "label": "THE REVEAL",
+    "headline": "Gotcha. This agency doesn’t exist.",
+    "launchLine": "The person behind this Google search experiment does, and that’s me.",
+    "verifiedLine": "The person who got it to #1 on Google does, and that’s me.",
+    "rankingEvidenceUrl": "",
+    "intro": "I’m Gavin Lau, an Australian AI marketing teacher and consultant. I built this fictional agency to show what AI can do across research, copy, design and web development.",
+    "offers": [
+      [
+        "Done-for-you AI marketing",
+        "I can help you find what customers search for, build the pages and content they need, and set up measurement around enquiries."
+      ],
+      [
+        "AI training for your team",
+        "I can teach your team to use AI for marketing through hands-on work with your own briefs, review standards and approved tools."
+      ]
+    ],
+    "contact": "Connect with Gavin on LinkedIn",
+    "share": "Share the site",
+    "shareText": "Take a look at this Brisbane AI marketing agency.",
+    "reactions": [
+      [
+        "got-me",
+        "You got me"
+      ],
+      [
+        "saw-it-coming",
+        "Saw it coming"
+      ],
+      [
+        "show-me-how",
+        "Show me how"
+      ]
+    ],
+    "close": "Close reveal",
+    "shareFallback": "Open the share link",
+    "counts": "See experiment counts"
+  },
+  "tool": {
+    "intro": "Find out what’s in place for a small AI marketing pilot. Your answers stay on this page.",
+    "start": "Start the assessment",
+    "next": "Continue",
+    "back": "Back",
+    "report": "Get your full report",
+    "restart": "Start again",
+    "options": [
+      "Not yet",
+      "Partly",
+      "Yes, consistently"
+    ],
+    "questions": [
+      [
+        "Can you name one marketing task you repeat every week?",
+        "Choose one repeated task with a clear start and finish, such as drafting enquiry replies."
+      ],
+      [
+        "Do you know how long that task takes today?",
+        "Time a few runs before changing the process."
+      ],
+      [
+        "Do you have approved examples your team can work from?",
+        "Collect a few strong examples with personal details removed."
+      ],
+      [
+        "Does your team know which data can go into approved AI tools?",
+        "Agree on approved tools and what information must stay out."
+      ],
+      [
+        "Is someone responsible for checking AI drafts before they go live?",
+        "Assign a reviewer and give them a checklist for facts, tone and promises."
+      ],
+      [
+        "Can you run a small trial without touching live customer records?",
+        "Build a trial with synthetic examples and add difficult cases."
+      ],
+      [
+        "Have you picked a success measure beyond output volume?",
+        "Compare review time, errors or qualified enquiries with your baseline."
+      ]
+    ],
+    "bands": [
+      "Build the basics first",
+      "Ready for a supervised trial",
+      "Ready to plan a measured pilot"
+    ]
+  }
+}

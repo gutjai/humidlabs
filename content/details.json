@@ -1,0 +1,109 @@
+{
+  "/": {
+    "title": "AI Marketing & Automation for Brisbane Business | {{brandName}}"
+  },
+  "services/ai-training/": {
+    "title": "ChatGPT & AI Training in Brisbane for Small Business",
+    "refs": [
+      "council",
+      "tafe",
+      "oaic"
+    ],
+    "related": [
+      "guides/first-ai-marketing-pilot/",
+      "guides/ai-data-and-review/"
+    ]
+  },
+  "services/ai-marketing/": {
+    "title": "AI Marketing in Brisbane: Content, SEO & AI Search",
+    "related": [
+      "guides/local-seo-with-ai/"
+    ]
+  },
+  "industries/tradies/": {
+    "title": "AI for Tradies in Brisbane: Quotes, Calls & Admin",
+    "refs": [
+      "council",
+      "oaic"
+    ],
+    "related": [
+      "guides/ai-enquiry-workflow/",
+      "services/ai-automation/"
+    ]
+  },
+  "industries/hospitality/": {
+    "title": "AI for Cafés & Restaurants in Brisbane | Practical Guide",
+    "refs": [
+      "council",
+      "oaic"
+    ],
+    "related": [
+      "guides/local-seo-with-ai/",
+      "services/ai-marketing/"
+    ]
+  },
+  "industries/real-estate/": {
+    "title": "AI for Real Estate Agents in Brisbane",
+    "refs": [
+      "oaic"
+    ],
+    "related": [
+      "guides/ai-data-and-review/",
+      "services/ai-training/"
+    ]
+  },
+  "guides/first-ai-marketing-pilot/": {
+    "refs": [
+      "council",
+      "oaic"
+    ],
+    "related": [
+      "guides/ai-data-and-review/"
+    ]
+  },
+  "guides/local-seo-with-ai/": {
+    "refs": [
+      "google"
+    ],
+    "related": [
+      "services/ai-marketing/"
+    ]
+  },
+  "guides/ai-enquiry-workflow/": {
+    "refs": [
+      "oaic"
+    ],
+    "related": [
+      "services/ai-automation/"
+    ]
+  },
+  "guides/ai-data-and-review/": {
+    "refs": [
+      "oaic"
+    ],
+    "related": [
+      "services/ai-training/"
+    ]
+  },
+  "guides/": {
+    "title": "Free AI Guides for Brisbane Small Business | {{brandName}}"
+  },
+  "faq/": {
+    "title": "AI for Small Business: FAQ | {{brandName}}"
+  },
+  "about/": {
+    "title": "About {{brandName}} and the Experiment Behind It"
+  },
+  "work/": {
+    "title": "Our Work: Brands We Launched | {{brandName}}"
+  },
+  "tools/ai-readiness/": {
+    "title": "AI Readiness Score: Free 2-Minute Check for Your Business"
+  },
+  "services/ai-audit/": {
+    "related": [
+      "tools/ai-readiness/",
+      "guides/first-ai-marketing-pilot/"
+    ]
+  }
+}

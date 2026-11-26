@@ -1,0 +1,287 @@
+{
+  "/": [
+    "Brisbane AI Marketing Agency | {{brandName}}",
+    "Practical AI for Brisbane small businesses: improve quotes, enquiries and marketing. Free AI readiness check, no sign-up."
+  ],
+  "services/": [
+    "AI Services for Brisbane Businesses",
+    "Explore AI marketing, automation and team training for Brisbane businesses.",
+    "Start with a business problem. Pick the work you want to improve and define what a useful result would look like."
+  ],
+  "services/ai-marketing/": [
+    "AI Marketing for Brisbane Businesses",
+    "Plan practical AI-assisted SEO, content and enquiry campaigns with a human review process.",
+    "Use AI to speed up research and first drafts while keeping your offers, prices and promises under human review.",
+    [
+      "Find the demand",
+      "Start with questions from real enquiries and Search Console. Group them by intent and match each group to a useful service or guide page."
+    ],
+    [
+      "Build a reviewable workflow",
+      "Give the model approved examples, the offer and source material. Check every price, claim and suburb reference before it goes live."
+    ],
+    [
+      "Measure the work that matters",
+      "Pick one conversion such as a qualified enquiry. Measure it alongside search clicks so you can spot pages that attract attention without helping people act."
+    ]
+  ],
+  "services/ai-automation/": [
+    "AI Automation for Brisbane Businesses",
+    "Map and test AI-assisted enquiry handling, internal summaries and follow-ups with approval steps.",
+    "Start with a repeatable internal task and keep someone accountable for reviewing the output.",
+    [
+      "Map one workflow",
+      "Write down the trigger, inputs, output, exceptions and owner. A simple rules-based form may handle predictable routing."
+    ],
+    [
+      "Use AI where language varies",
+      "Try drafting or categorising enquiries using synthetic examples. Send uncertain cases to a person and have them approve any replies."
+    ],
+    [
+      "Plan for failures",
+      "Test duplicates, missing fields and tool outages. Log exceptions, keep a manual route and record how to disable the workflow."
+    ]
+  ],
+  "services/ai-training/": [
+    "ChatGPT training for Brisbane businesses",
+    "Hands-on ChatGPT, Claude and Gemini training for Brisbane teams, with a self-paced exercise and links to Council and TAFE resources.",
+    "Work through a marketing task your team will repeat the following week, from briefing through editing and approval.",
+    [
+      "Bring a safe brief",
+      "Choose one task such as turning public service notes into a landing-page draft. Remove customer details and gather approved examples."
+    ],
+    [
+      "Practise the review",
+      "Pair up and mark unsupported claims, missing details and off-brand wording. Have each pair improve its brief and test again."
+    ],
+    [
+      "Leave with a reusable process",
+      "Record the prompt, permitted inputs, review checklist and approval owner. Review samples after a fortnight to see where people still struggle."
+    ],
+    [
+      "A 30-minute self-paced exercise",
+      "Spend five minutes writing a service brief with an audience, goal and approved facts. Spend ten drafting with ChatGPT, Claude or Gemini through your approved account. Then spend ten checking the draft against the brief and five updating the instructions. Save both versions and the corrections for your team discussion."
+    ],
+    [
+      "Use a brief you can reuse",
+      "Try this with a public service description.\n\n> Draft a 100-word page intro for [audience] using only the service facts below. Put gaps in a separate list. End with one next step. Avoid promises about price or turnaround unless the facts include them.\n\nAsk a colleague to judge whether a customer could act on the result and whether every material statement has a source."
+    ],
+    [
+      "Where to look for courses in Brisbane",
+      "Check the Brisbane City Council business hub for current workshops, including listings for its Suburban Business Hub in Nundah. Check TAFE Queensland for current delivery options and fees. When comparing courses, look for time to practise your own workflow, instruction on safe inputs and feedback on how you checked your output."
+    ]
+  ],
+  "industries/": [
+    "AI Marketing by Industry in Brisbane",
+    "Find AI marketing workflows for Brisbane tradies, hospitality venues and real estate teams.",
+    "Each business has a different bottleneck. Start with a workflow that fits how your customers decide and get in touch."
+  ],
+  "industries/tradies/": [
+    "AI for tradies in Brisbane",
+    "Improve trade enquiry handling and service pages with grounded AI-assisted workflows.",
+    "A useful first project is a better handover from enquiry to callback.",
+    [
+      "Route enquiries from the facts",
+      "Define the suburbs, jobs and hours you actually cover. Ask staff to review suggested triage before sending any response. Escalate safety and emergency cases directly to a person."
+    ],
+    [
+      "Write a good service page",
+      "List the job types you take, what a customer can prepare and how quoting works. Use genuine project photos with permission and check every draft against your actual services."
+    ],
+    [
+      "Track callbacks",
+      "Compare time to first reply and the number of jobs that can be quoted. Review a sample of rejected enquiries to catch routing mistakes."
+    ],
+    [
+      "Try an after-hours triage draft",
+      "Use a scrubbed or invented example, such as “Need a gate latch replaced in Nundah next week.”\n\n> Extract suburb, job type, preferred timing and missing details. Check them against the coverage list. Mark any uncertain or urgent case for staff review. Draft a short reply that asks only for the details we need. Leave availability and prices blank.\n\nHave staff confirm the customer can send a photo without including faces or unrelated private details."
+    ],
+    [
+      "Build a quote outline for the office",
+      "Give AI job notes from an internal example and your standard scope headings. Ask for scope, exclusions, assumptions and unresolved questions. Confirm quantities, labour, rates and access yourself before anyone issues a quote. Keep the final estimate in your regular quoting system."
+    ],
+    [
+      "Test across a real week of job types",
+      "Create fictional examples of a routine call, an out-of-area job, conflicting dates, a repeat enquiry and a safety concern. Check whether drafts preserve job details and whether the hard cases reach a person. If staff spend longer correcting a category of replies, keep that category manual."
+    ]
+  ],
+  "industries/hospitality/": [
+    "AI for Brisbane cafés and restaurants",
+    "Use AI to draft hospitality updates and campaigns from approved menus and venue information.",
+    "Keep your menu, hours and booking information current across the places people find your venue.",
+    [
+      "Keep a source of truth",
+      "Use one approved menu and hours sheet. Draft updates from it, then confirm prices and dates before publishing to your website and profiles."
+    ],
+    [
+      "Plan a quiet-period campaign",
+      "Pick an offer you can deliver in a specific window. Draft a post and landing page, then measure bookings or redemptions for that offer."
+    ],
+    [
+      "Keep guest questions safe",
+      "Route allergies, dietary needs and accessibility questions to trained staff. Have them check against current venue procedures and ingredients."
+    ],
+    [
+      "Draft a service update from an approved menu",
+      "Use a real change, such as a different closing time for a public holiday. Draft website and social updates together so customers see the same information.\n\n> Write one website notice and one social caption from these approved hours. Include the date and suburb. Mark any missing price or booking detail for staff. Do not infer ingredients or availability."
+    ],
+    [
+      "Use internal summaries for stock and rosters",
+      "Ask AI to organise a synthetic supplier invoice or summarise anonymous shift notes. Keep order quantities, staff records and roster approvals in the systems you already use. Verify the original documents before changing a purchase or roster."
+    ],
+    [
+      "Reply to reviews without exposing guest details",
+      "Draft a short reply that acknowledges the issue and offers a staff contact route. Have the duty manager remove anything that identifies a reservation or confirms health details. Keep food safety complaints and allergy queries with trained staff."
+    ]
+  ],
+  "industries/real-estate/": [
+    "AI for real estate agents in Brisbane",
+    "Draft real estate listing copy and follow-up templates with verified facts and human approval.",
+    "Use AI to edit language while your team controls the facts and decisions.",
+    [
+      "Build a listing brief",
+      "Give the tool approved property features and wording. Check distances, school zones, floor areas and inspection times against reliable sources."
+    ],
+    [
+      "Keep sensitive records separate",
+      "Use synthetic buyer enquiries for training. Use your approved systems for names, contact details, financial information and tenant records."
+    ],
+    [
+      "Check before publishing",
+      "Have the listing owner review copy and images together. Keep an evidence sheet for claims and update all channels when inspection details change."
+    ],
+    [
+      "Draft from a property facts sheet",
+      "Prepare a facts sheet with verified features and source notes.\n\n> Draft listing copy from this approved sheet. Return a separate list of missing facts. Avoid investment projections, claims about zoning or schools, and distances that have not been verified.\n\nConfirm the final draft and images reflect the current property before posting."
+    ],
+    [
+      "Prepare follow-ups without putting buyer details in a tool",
+      "Build reusable reply templates with placeholders for inspection times and current documents. Keep buyer and tenant records in approved systems. For appraisal prep, ask AI to structure questions or organise approved research. Have the responsible agent verify comparisons and make the appraisal."
+    ],
+    [
+      "Run a privacy and publication check",
+      "Check which tools staff can use, which data is allowed, who has access and where drafts are retained. Check photo permissions and ensure edited images fairly represent the property. Have a nominated editor approve the listing and report inaccuracies promptly. Ask your organisation’s compliance adviser about Queensland obligations."
+    ]
+  ],
+  "guides/": [
+    "Practical AI Marketing Guides for Small Businesses",
+    "Step-by-step guides to AI marketing, local SEO, enquiry workflows and safe AI use.",
+    "Use these guides to plan a small project, review its output and decide whether to keep it."
+  ],
+  "guides/first-ai-marketing-pilot/": [
+    "Plan Your First AI Marketing Pilot",
+    "Build a two-week AI marketing pilot with a baseline, a review checklist and a go/no-go decision.",
+    "Choose a task you already do often enough to compare the existing workflow with an AI-assisted one.",
+    [
+      "Record the baseline",
+      "Take five ordinary briefs. Time drafting and approval separately and record corrections for each brief. Keep the inputs and examples free of personal information."
+    ],
+    [
+      "Test the same task",
+      "Use the same briefs for the pilot. Give AI a goal, approved sources and output format. Ask a colleague to review both sets against the same checklist for accuracy and usability."
+    ],
+    [
+      "Decide whether to keep it",
+      "Compare total time including review and look at errors by severity. Keep the workflow only if it improves your stated measure and stays within your quality threshold."
+    ]
+  ],
+  "guides/local-seo-with-ai/": [
+    "Local SEO With AI for Brisbane Small Businesses",
+    "Use AI to organise local search questions and draft service content from facts you can verify.",
+    "Start with a page customers can use to decide whether to contact you.",
+    [
+      "Collect real questions",
+      "Export relevant Search Console queries and add common questions from customers, with personal details removed. Group questions by what someone wants to do, such as compare options or get a quote."
+    ],
+    [
+      "Match the page to the task",
+      "Turn the clusters into a brief. Include scope, service area, what to expect and next steps. Verify all details yourself and link answers to the relevant service pages."
+    ],
+    [
+      "Review changes in context",
+      "Log the date and compare search clicks and qualified enquiries over similar periods. Local results depend on relevance, distance and prominence. Keep your eligible Business Profile accurate."
+    ]
+  ],
+  "guides/ai-enquiry-workflow/": [
+    "Build an AI-Assisted Enquiry Workflow",
+    "Design and test a draft-only enquiry workflow without exposing customer records in the trial.",
+    "Make your first automation a suggested draft that staff can review from their inbox or CRM.",
+    [
+      "Define the handoff",
+      "Create a template with enquiry category, urgency, next action and draft response. Specify that missing information should be marked unknown."
+    ],
+    [
+      "Test difficult cases",
+      "Create synthetic examples for duplicate enquiries, inaccessible attachments and a customer asking for an exception. Make sure staff can skip the draft and reply manually."
+    ],
+    [
+      "Roll out with a stop switch",
+      "Start with one person and a limited queue. Compare time and correction rates, log problems and maintain a way to turn off suggestions immediately."
+    ]
+  ],
+  "guides/ai-data-and-review/": [
+    "A Small Business Checklist for AI Data and Review",
+    "Create a practical policy for approved AI tools, data inputs and human review of marketing outputs.",
+    "Put a short policy beside the workflow so the team can use it during everyday work.",
+    [
+      "Make a permitted-input checklist",
+      "List approved tools, access settings and allowed materials. Use public descriptions, synthetic examples and approved templates for trials. Review retention, training use and access before accepting other data."
+    ],
+    [
+      "Assign an approver",
+      "Require a named reviewer to verify facts, consent for images and the accuracy of offers. Keep dated source material where staff can find it."
+    ],
+    [
+      "Plan what happens when it goes wrong",
+      "Give staff a way to report unintended disclosure or a bad draft. Document how to pause the workflow and follow your organisation’s incident process."
+    ]
+  ],
+  "about/": [
+    "About the Brisbane AI Marketing Studio",
+    "Read the approach behind this Brisbane AI marketing studio and its portfolio experiment.",
+    "The studio explores three ways to use AI in a small business: marketing people can find, workflows staff can check and training teams can put to work.",
+    [
+      "Where the studio comes from",
+      "This is a fictional agency and a portfolio experiment. The guides and readiness assessment are designed for real work. The audit is part of the experiment. [Meet the creator on the reveal page](/gotcha/)."
+    ]
+  ],
+  "faq/": [
+    "Brisbane AI Marketing Questions",
+    "Answers about AI marketing, automation, team training and the free readiness assessment.",
+    "Find out where to start and what to prepare."
+  ],
+  "work/": [
+    "AI Web Design and Marketing Work",
+    "Explore Mistlo, an e-commerce design and search experiment built with AI.",
+    "A look at how AI can support research, website production and search content."
+  ],
+  "tools/ai-readiness/": [
+    "Free AI Readiness Assessment for Small Businesses",
+    "Answer seven questions to choose a first AI marketing project and see what needs to be in place before a pilot."
+  ],
+  "gotcha/": [
+    "Meet Gavin Lau",
+    "Meet the AI marketing teacher and consultant behind this Brisbane portfolio experiment."
+  ],
+  "fooled/": [
+    "Experiment counts",
+    "Tracked audit and reveal counts from the Brisbane AI marketing experiment."
+  ],
+  "services/ai-audit/": [
+    "Free AI Audit for Brisbane Small Businesses",
+    "Identify useful AI pilot projects for your Brisbane business with a free in-browser readiness check.",
+    "A good audit finds a repeatable workflow you can test, the data it needs and a way to judge improvement.",
+    [
+      "Bring three repeatable tasks",
+      "Write down how often they recur, who owns them and what happens when they go wrong. Include review and rework when estimating time."
+    ],
+    [
+      "Pick one low-risk pilot",
+      "Choose a task that already has a clear definition of good output. Drafting an internal reply template is easier to reverse than sending replies automatically."
+    ],
+    [
+      "Run the free readiness check",
+      "The assessment scores seven basics and gives you three next steps in your browser. Bring those steps to your next team discussion."
+    ]
+  ]
+}
