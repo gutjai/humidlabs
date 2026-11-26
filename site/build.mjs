@@ -25,7 +25,7 @@ const abs = route => new URL(route.replace(/^\//, ''), base).href;
 const url = route => h(root + route.replace(/^\//, ''));
 const expand = value => value.replaceAll('{{brandName}}', () => brandName);
 const routes = new Map();
-const renderText = value => markdown(expand(value), { root });
+const renderText = value => markdown(expand(value), { root }).html;
 const link = (route, label, classes = '') => `<a class="${classes}" href="${url(route)}">${h(label)}</a>`;
 const audit = (location, label = copy.audit) => `<a class="button" href="${url('gotcha/')}" data-audit="${location}">${h(label)} <span aria-hidden="true">↗</span></a>`;
 const organization = {
@@ -145,7 +145,7 @@ for (const [route, [rawTitle, description, intro, ...sections]] of Object.entrie
       <p data-no-counts>Public counts are launching.</p></div>${reactions()}${link('gotcha/', 'Meet Gavin')}</div>`;
     if (route === 'faq/') {
       body += `<div class="prose faq">${faq.map(([question, answer]) => `<details><summary>${h(question)}</summary>${renderText(answer)}</details>`).join('')}</div>`;
-      schema.push({ '@type': 'FAQPage', mainEntity: faq.map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text } })) });
+      schema.push({ '@type': 'FAQPage', mainEntity: faq.map(([name, text]) => ({ '@type': 'Question', name, acceptedAnswer: { '@type': 'Answer', text: renderText(text) } })) });
     }
     if (guide) schema.push({ '@type': 'Article', headline: heading, description, image: abs('assets/og.png'), author: { '@id': organization['@id'] }, mainEntityOfPage: abs(route), inLanguage: 'en-AU' });
     if (service) schema.push({ '@type': 'Service', name: heading, description, provider: { '@id': organization['@id'] }, areaServed: organization.areaServed[0] });
@@ -185,5 +185,6 @@ await Promise.all([
     [...routes].filter(([, data]) => !data.noindex).map(([path]) => '<url><loc>' + h(abs(path)) + '</loc></url>').join('\n') + '</urlset>\n')
 ]);
 console.log('Built ' + routes.size + ' pages in ' + dist);
+
 
 

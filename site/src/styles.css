@@ -129,3 +129,14 @@ body:has(dialog[open]){overflow:hidden}
   body:has(.mobile-audit:not([hidden])) .footer{padding-bottom:5rem}
 }
 
+@media(min-width:901px){
+  .hero h1{font-size:clamp(3.6rem,5.75vw,6.35rem)}
+}
+@media(max-width:650px){
+  .project-art{min-height:0}
+  .project-art img{height:auto;aspect-ratio:1.6;object-fit:contain}
+  .reveal .rank-line{font-size:1rem}
+  .offers p{line-height:1.45}
+  dialog .offers{gap:.5rem;margin:.8rem 0}
+  dialog .offers section{padding:.65rem}
+}
