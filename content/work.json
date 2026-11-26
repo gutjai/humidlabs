@@ -2,7 +2,7 @@
   {
     "name": "Mistlo",
     "label": "E-commerce design and search",
-    "description": "An e-commerce brand we designed, built and ranked with AI.",
+    "description": "An e-commerce brand we designed and built with AI for organic search.",
     "url": "https://gutjai.github.io/mistlo/",
     "metrics": [
       {
@@ -21,3 +21,4 @@
     "revealUrl": "https://gutjai.github.io/mistlo/gotcha/"
   }
 ]
+
